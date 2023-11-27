@@ -15,7 +15,7 @@
 3. 將data放入kaldi/egs目錄下解壓縮
 
 ## Table of Contents
-
+- [Kaldi-enviroment-setting](#Kaldi-enviroment-setting)
 - [Data-Preprocessing-for-Kaldi](#Data-Preprocessing-for-kaldi)
 - [Shell-script調整-Kaldi](#shell-script調整-kaldi)
 - [Training-Kaldi](#training-kaldi)
@@ -23,6 +23,14 @@
 - [Data-Preprocessing-for-ESPnet](#data-preprocessing-for-espnet)
 - [Training-ESPnet](#Training-ESPnet)
 - [Conclusion](#conclusion)
+
+## Kaldi-enviroment-setting
+
+Important directories of Kaldi：
+
+1. tools　(存放安裝工具、語言模型)
+2. src　（儲存source code）
+3. egs　（儲存開源的不同的資料集的shell scripts）
 
 ## Data-Preprocessing-for-Kaldi
 
