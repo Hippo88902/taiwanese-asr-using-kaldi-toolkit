@@ -26,7 +26,7 @@
 
 ## Kaldi-enviroment-setting
 
-Important directories of Kaldi：
+Important directories for Kaldi：
 
 1. tools　(存放安裝工具、語言模型)
 2. src　（儲存source code）
