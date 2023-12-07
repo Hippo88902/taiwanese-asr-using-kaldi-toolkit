@@ -41,12 +41,12 @@ $ extras/install_mkl.sh # 這個一定要裝起來，不然跑不了，有bug要
    a. 下載srilm的檔案
    b. 改名成srilm.tgz，放到tools裡面
    c. 安裝
-   ```sh
-   $ ./install_srilm.sh
-   $ ./extras/install_kaldi_lm.sh
-   $ source env.sh
-   ```
-4. 到tools編譯
+ ```sh
+ $ ./install_srilm.sh
+ $ ./extras/install_kaldi_lm.sh
+ $ source env.sh
+ ```
+5. 到tools編譯
 ```sh
 $ make -j 32
 ```
