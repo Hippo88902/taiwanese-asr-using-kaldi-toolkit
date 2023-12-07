@@ -25,7 +25,8 @@
 - [Conclusion](#conclusion)
 
 ## Kaldi-enviroment-setting
-# Kaldi環境安裝
+Kaldi環境安裝
+
 1. git clone https://github.com/kaldi-asr/kaldi.git
 2. 在/kaldi/tools中安裝第三方工具、語言模型
 Important directories for Kaldi：
