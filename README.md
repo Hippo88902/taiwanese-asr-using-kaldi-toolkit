@@ -46,10 +46,14 @@ $ extras/install_mkl.sh # 這個一定要裝起來，不然跑不了，有bug要
  $ ./extras/install_kaldi_lm.sh
  $ source env.sh
  ```
-5. 到tools編譯
+4. 到tools編譯
 ```sh
 $ make -j 32
 ```
+- 32為電腦的**CPU核心數**，可用`cat /proc/cpuinfo | grep "processor" | wc -l`來查看
+- `-j`是一個並行處理機制，可以加快編譯的速度
+- 沒有意外你會看到 All done OK.
+  
 Important directories for Kaldi：
 
 1. tools　(存放安裝工具、語言模型)
