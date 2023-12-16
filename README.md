@@ -59,20 +59,22 @@ $ ./configure --shared
 $ make depend -j 32 
 $ make -j 32
 ```
-安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝
+安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝。
 ```sh
 # cd到 egs/yesno/s5 輸入
 $ bash run.sh 
 # 或是
 $ ./run.sh
 ```
-若有score的結果則代表有成功執行
+若有score的結果則代表有成功執行。
 
 Important directories for Kaldi：
 
 1. tools　(存放安裝工具、語言模型)
 2. src　（儲存source code）
 3. egs　（儲存開源的不同的資料集的shell scripts）
+
+按照上述步驟可以建立kaldi的環境，但環境設置會因為每一個人電腦、OS的不同而出現不同的問題，請依照terminal顯示的內容安裝對應套件。
 
 ## Data-Preprocessing-for-Kaldi
 
