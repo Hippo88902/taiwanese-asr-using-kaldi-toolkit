@@ -76,6 +76,12 @@ Important directories for Kaldi：
 
 按照上述步驟可以建立kaldi的環境，但環境設置會因為每一個人電腦、OS的不同而出現不同的問題，請依照terminal顯示的內容安裝對應套件。
 
+**其他可參考：**
+
+https://kaldi-asr.org/doc/index.html
+
+https://blog.csdn.net/DL_62532/article/details/128156452
+
 ## Data-Preprocessing-for-Kaldi
 
 下載原始資料後，需要先對資料進行前處理，否則無法使用kaldi進行訓練。
