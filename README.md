@@ -76,7 +76,7 @@ Important directories for Kaldi：
 
 按照上述步驟可以建立kaldi的環境，但環境設置會因為每一個人電腦、OS的不同而出現不同的問題，請依照terminal顯示的內容安裝對應套件。
 
-**其他可參考：**
+**參考資料：**
 
 https://kaldi-asr.org/doc/index.html
 
