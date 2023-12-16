@@ -66,6 +66,8 @@ $ bash run.sh
 # 或是
 $ ./run.sh
 ```
+若有score的結果則代表有成功執行
+
 Important directories for Kaldi：
 
 1. tools　(存放安裝工具、語言模型)
