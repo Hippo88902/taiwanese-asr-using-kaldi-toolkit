@@ -63,7 +63,7 @@ $ make -j 32
 ```sh
 # cd到 egs/yesno/s5 輸入
 $ bash run.sh 
-或是
+# 或是
 $ ./run.sh
 ```
 Important directories for Kaldi：
