@@ -52,7 +52,7 @@ $ make -j 32
 ```
 - 32為電腦的**CPU核心數**，可用`cat /proc/cpuinfo | grep "processor" | wc -l`來查看
 - `-j`是一個並行處理機制，可以加快編譯的速度
-- 沒有意外你會看到 All done OK.
+- 如果正確執行會顯示 All done OK.
 5. 到src裡建置source code
 ```sh
 $ ./configure --shared 
