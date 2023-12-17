@@ -99,9 +99,8 @@ https://blog.csdn.net/DL_62532/article/details/128156452
 
 The steps for data preprocessing:
 
-1. 將trian.csv以及test.csv檔處理成kaldi可接受的格式
-2. 由於音檔格式為（wav檔, 22 kHz, mono, 32 bits），因此使用 sox 將音檔轉成（wav檔, 16 kHz, mono, 16 bits）
-，train、test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是建立一個.sh檔案執行
+1. 將trian.csv以及test.csv檔處理成kaldi可接受的格式，由於音檔格式為（wav檔, 22 kHz, mono, 32 bits），因此使用 sox 將音檔轉成（wav檔, 16 kHz, mono, 16 bits）  
+2. train、test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是建立一個.sh檔案執行
    ```
    #!/bin/bash
    for x in ./*.wav;do
