@@ -8,6 +8,17 @@
 2. 輸入：台語語音音檔（格式：wav檔, 22 kHz, mono, 32 bits） 
 3. 輸出：台羅拼音（依教育部標準）
 
+- **Kaggle的材料**
+    1. **`train`**
+        - 4 hour 15 min
+        - 可以從 train 切一些資料來 eval 用
+    2. **`test`**
+        - 28 min
+    3. **`train-toneless.csv`**
+    4. **`lexicon.txt`**
+    5. **~~sample.csv　（參考用）~~**
+    6. **~~train.csv　（用不到）~~**
+  
 事前準備:
 
 1. 在server上安裝kaldi
@@ -90,6 +101,18 @@ The steps for data preprocessing:
 
 1. 將trian.csv以及test.csv檔處理成kaldi可接受的格式
 2. 由於音檔格式為（wav檔, 22 kHz, mono, 32 bits），因此使用 sox 將音檔轉成（wav檔, 16 kHz, mono, 16 bits）
+train, test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是你想多創一個.sh檔案也可以
+   ```
+   #!/bin/bash
+   for x in ./*.wav;do
+   b=${x##*/}
+   sox $b -r 16000 -e signed-integer -b 16 tmp-$b
+   rm -rf $b
+   mv tmp-$b $b
+   done
+   ​
+可以用sox來看音檔的資訊
+`soxi <audiofile>`
 3. 在s5目錄下，建立lexicon資料夾，並將kaggle上的lexicon檔案放進去
 
 ![image](https://github.com/MachineLearningNTUT/taiwanese-asr-using-kaldi-toolkit-Hippo88902/blob/main/s5.jpg)
