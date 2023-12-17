@@ -184,9 +184,9 @@ The steps for data preprocessing:
     - 如果出現`<SIL>`出現兩次的錯誤，把`echo "<SIL> SIL" >> $dict_dir/lexicon.txt`註解掉
      
 Tips:
-    1. 執行程式後發生錯誤時，多查看.log檔，可節省大量偵錯時間
-    2. 找不出錯時，可對照原始檔的設定，比較一下與我們的data有什麼不同，有時便能豁然開朗
-    3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
+    - 1. 執行程式後發生錯誤時，多查看.log檔，可節省大量偵錯時間
+    - 2. 找不出錯時，可對照原始檔的設定，比較一下與我們的data有什麼不同，有時便能豁然開朗
+    - 3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
     
 - p.s.: 前面stage-1~5要跑完才能跑DNN，因為會用到前面的資料，nnet3(stage6)可以不用跑，直接跑chain(stage7)就好，chain也是會回去叫nnet3的東西來用
 - p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
