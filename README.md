@@ -49,9 +49,9 @@ $ extras/install_irstlm.sh
 $ extras/install_mkl.sh # 這個一定要裝起來，不然跑不了，有bug要Debug
 ```
 3. 在tools安裝 srilm 語言模型
-   a. 下載srilm的檔案
-   b. 改名成srilm.tgz，放到tools裡面
-   c. 安裝
+   - a. 下載srilm的檔案
+   - b. 改名成srilm.tgz，放到tools裡面
+   - c. 安裝
  ```sh
  $ ./install_srilm.sh
  $ ./extras/install_kaldi_lm.sh
