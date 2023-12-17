@@ -111,8 +111,10 @@ The steps for data preprocessing:
    mv tmp-$b $b
    done
    ​
-可以用sox來看音檔的資訊
-`soxi <audiofile>`
+可以用sox指令來看音檔的資訊
+```sh
+soxi <audiofile>
+```
 3. 在s5目錄下，建立lexicon資料夾，並將kaggle上的lexicon檔案放進去
 
 ![image](https://github.com/MachineLearningNTUT/taiwanese-asr-using-kaldi-toolkit-Hippo88902/blob/main/s5.jpg)
