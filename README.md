@@ -70,14 +70,14 @@ $ ./configure --shared
 $ make depend -j 32 
 $ make -j 32
 ```
--p.s.: 安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝。
+- p.s.: 安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝。
 ```sh
 # cd到 egs/yesno/s5 輸入
 $ bash run.sh 
 # 或是
 $ ./run.sh
 ```
-若有score的結果則代表有成功執行。
+若有出現score的結果則代表有成功執行。
 
 Important directories for Kaldi：
 
