@@ -101,7 +101,7 @@ The steps for data preprocessing:
 
 1. 將trian.csv以及test.csv檔處理成kaldi可接受的格式，由於音檔格式為（wav檔, 22 kHz, mono, 32 bits），因此使用 sox 將音檔轉成（wav檔, 16 kHz, mono, 16 bits）  
 2. train、test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是建立一個.sh檔案執行
-   ```
+   ```sh
    #!/bin/bash
    for x in ./*.wav;do
    b=${x##*/}
@@ -109,11 +109,13 @@ The steps for data preprocessing:
    rm -rf $b
    mv tmp-$b $b
    done
+   ```
    ​
-可以用sox指令來看音檔的資訊
-```sh
-soxi <audiofile>
-```
+   可以用sox指令來看音檔的資訊
+   ```sh
+   soxi <audiofile>
+   ```
+   
 3. 在s5目錄下，建立lexicon資料夾，並將kaggle上的lexicon檔案放進去
 
 ![image](https://github.com/MachineLearningNTUT/taiwanese-asr-using-kaldi-toolkit-Hippo88902/blob/main/s5.jpg)
@@ -187,7 +189,7 @@ Tips:
     3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
     
 - p.s.: 前面stage-1~5要跑完才能跑DNN，因為會用到前面的資料，nnet3(stage6)可以不用跑，直接跑chain(stage7)就好，chain也是會回去叫nnet3的東西來用
--p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
+- p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
 
 ## Training-Kaldi
 
@@ -197,7 +199,7 @@ Tips:
 
 ****如何執行****
 
-如果有空閒的GPU資源:
+如果有空閒的GPU資源可下以下指令:
 ```sh
 $ sudo nvidia-smi -c 3
 # 讓gpu進入獨佔模式，可加快訓練的速度(不過要先跟其他人協調好再下這行指令)
