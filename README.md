@@ -140,13 +140,15 @@ soxi <audiofile>
 
 ## Shell-script調整-Kaldi
 
+1. cmd.sh：只有單機要跑，用run.pl
+![image]()
+
 在進行訓練前，還必須對shell script (cmd.sh、 path.sh、 run.sh ...) 進行一些調整，才能夠順利進行training。
 
 Tips:
-
-1. 執行程式後發生錯誤時，多查看.log檔，可節省大量偵錯時間
-2. 找不出錯時，可對照原始檔的設定，比較一下與我們的data有什麼不同，有時便能豁然開朗
-3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
+    1. 執行程式後發生錯誤時，多查看.log檔，可節省大量偵錯時間
+    2. 找不出錯時，可對照原始檔的設定，比較一下與我們的data有什麼不同，有時便能豁然開朗
+    3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
 
 p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
 
