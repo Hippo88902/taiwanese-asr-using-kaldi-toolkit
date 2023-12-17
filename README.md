@@ -140,17 +140,54 @@ soxi <audiofile>
 
 ## Shell-script調整-Kaldi
 
-1. cmd.sh：只有單機要跑，用run.pl
-![image]()
-
 在進行訓練前，還必須對shell script (cmd.sh、 path.sh、 run.sh ...) 進行一些調整，才能夠順利進行training。
 
+1. cmd.sh：只有單機要跑，用run.pl
+![image](https://github.com/Hippo88902/taiwanese-asr-using-kaldi-toolkit/blob/main/cmd_sh.png)
+2. run.sh : 將train_dir、eval_dir、test_dir換成自己的資料夾
+   ```sh
+   train_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/train
+   eval_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/eval
+   test_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/test
+   ```
+   - p.s.: 記得下面傳給其他檔案的資料夾名稱也要改
+3. local/prepare_data.sh:
+   ```sh
+   train_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/train
+   eval_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/eval
+   test_dir=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/test
+   label=/<username>/kaldi/egs/taiwanese/s5/downloads/kaldi-taiwanese-asr/text
+   ```
+   - p.s.: 只要改label即可
+     
+4. 準備 train, eval, test 的資料
+    
+    主要就`utt2spk`, `wav.scp`, `text`這三個檔案，`data/all`這個資料夾用不到，全部改掉
+    
+    ```bash
+    # make utt2spk, wav.scp and text
+    # preparing TRAIN set.
+    find -L $train_dir -name *.wav -exec sh -c 'x={}; y=$(basename -s .wav $x); printf "%s %s\n"     $y $y' \; | sed 's/\xe3\x80\x80\|\xc2\xa0//g' | dos2unix > data/train/utt2spk
+    find -L $train_dir -name *.wav -exec sh -c 'x={}; y=$(basename -s .wav $x); printf "%s %s\n"     $y $x' \; | sed 's/\xe3\x80\x80\|\xc2\xa0//g' | dos2unix > data/train/wav.scp
+    cp $label data/train
+    utils/fix_data_dir.sh data/train
+    ```
+    
+    - 如果不知道怎麼寫shell處理`train.csv`轉成`text`的程式碼，可以用其他程式語言處理好後，再`cp`一份過去即可
+        - **注意**：text沒有.txt
+    - eval, test大同小異，可以自己試試看
+      
+5. local/prepare_dict.sh
+    - 換`source_dir`，換到有`lexicon.txt`的那個資料夾
+    - 如果出現`<SIL>`出現兩次的錯誤，把`echo "<SIL> SIL" >> $dict_dir/lexicon.txt`註解掉
+     
 Tips:
     1. 執行程式後發生錯誤時，多查看.log檔，可節省大量偵錯時間
     2. 找不出錯時，可對照原始檔的設定，比較一下與我們的data有什麼不同，有時便能豁然開朗
     3. 確認shell-script裡所有的目錄都有放對地方，很常發生這種錯誤
-
-p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
+    
+- p.s.: 前面stage-1~5要跑完才能跑DNN，因為會用到前面的資料，nnet3(stage6)可以不用跑，直接跑chain(stage7)就好，chain也是會回去叫nnet3的東西來用
+-p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就能夠順利進行training了
 
 ## Training-Kaldi
 
@@ -158,13 +195,40 @@ p.s.: 改shell script的步驟很單調，也很無聊，不過成功之後就�
 2. 第二階段，求MFCC features，以及tri1~tri5(對齊並解碼)。
 3. 第三階段，選擇我們要的model開始training，有nnet3 tdnn models 以及 chain model兩種可選，通常chain model所花時間較短，且結果較好。
 
+****如何執行****
+
+如果有空閒的GPU資源:
 ```sh
 $ sudo nvidia-smi -c 3
 # 讓gpu進入獨佔模式，可加快訓練的速度(不過要先跟其他人協調好再下這行指令)
 $ nohup ./run.sh >& run.sh.log &
 # 保證登出不會中斷執行程式，因為training時間較久，下這個指令能確保訓練過程不會因為突發情況中斷。
 ```
-p.s.: 如果過程順利，就只要等training結束，若訓練中途出錯，則可根據.log檔去debug。
+
+若要執行程式碼，cd到s5資料夾
+
+```bash
+# Enter
+./run.sh 
+# 或
+bash run.sh
+
+# 如果前面跑完，想要從chain的地方開始
+./run.sh --stage 7
+# 不過從stage7開始，前面也會花時間在處理一些資料，跑過chain後，想要直接跑chain訓練的部分，可以
+./local/chain/run_tdnn.sh --stage 11
+
+# 結果在stage 8
+./run.sh --stage 8
+```
+
+- 直接run.sh，就是從stage -2跑到stage 8
+
+跑完的txt檔案可以到**`exp/tri5a/decode_test/scoring_kaldi/…`**或是**`exp/chain/tdnn_1d_sp/decode_test/scoring_kaldi/…`**去找
+
+再經過txt轉csv的方式處理，上傳Kaggle即可
+
+- p.s.: 如果過程順利，就只要等training結束，若訓練中途出錯，則可根據.log檔去debug。
 
 ## 使用ESPnet做台語語音辨認
 
