@@ -70,7 +70,7 @@ $ ./configure --shared
 $ make depend -j 32 
 $ make -j 32
 ```
-安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝。
+-p.s.: 安裝好kaldi後，可以到egs/yesno目錄測試kaldi是否正確安裝。
 ```sh
 # cd到 egs/yesno/s5 輸入
 $ bash run.sh 
