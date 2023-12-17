@@ -101,7 +101,7 @@ The steps for data preprocessing:
 
 1. 將trian.csv以及test.csv檔處理成kaldi可接受的格式
 2. 由於音檔格式為（wav檔, 22 kHz, mono, 32 bits），因此使用 sox 將音檔轉成（wav檔, 16 kHz, mono, 16 bits）
-train, test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是你想多創一個.sh檔案也可以
+，train、test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bits，可以直接cd到音檔資料夾輸入下面這個指令，或是建立一個.sh檔案執行
    ```
    #!/bin/bash
    for x in ./*.wav;do
@@ -116,6 +116,26 @@ train, test的音檔請先用sox來轉成 16 kHz sampling, signed-integer, 16 bi
 3. 在s5目錄下，建立lexicon資料夾，並將kaggle上的lexicon檔案放進去
 
 ![image](https://github.com/MachineLearningNTUT/taiwanese-asr-using-kaldi-toolkit-Hippo88902/blob/main/s5.jpg)
+
+****Kaldi recipes的架構****
+
+直接從`formosa`複製整個資料夾，取一個新的名字，看你想要取什麼，我取`taiwanese`(可以自己換)
+
+- egs每一個 **recipe** 的`steps`, `utils`都共用，都會link到`wsj`下面的，所以可以直接複製整個formosa的資料夾即可
+
+現在`taiwanese/s5`下面有的檔案(只列重要的)：
+
+1. **conf　（不用動）**
+2. **local　（很重要）**
+    1. **prepare_data.sh**：把資料換成kaldi可以吃的格式
+    2. **prepare_dict.sh**：給kaldi我們的字典
+    3. **nnet3**：kaldi的**DNN框架**
+    4. **chain**：結合nnet3的一種新的方法，目前**效果**最好的
+3. **steps　（不用動）**
+4. **utils　（不用動）**
+5. **cmd.sh　（把queue.pl改成run.pl）**
+6. **path.sh　（有問題再動）**
+7. **run.sh　（主要執行的腳本）**
 
 ## Shell-script調整-Kaldi
 
